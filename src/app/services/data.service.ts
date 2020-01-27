@@ -10,7 +10,7 @@ export class DataService {
   constructor(private http: HttpClient) { }
 
   getMenuOpts(){
-    return this.http.get<Componente[]>('assets/data/menujson');
+    return this.http.get<Componente[]>('/assets/data/menu.json');
   }
   
 }

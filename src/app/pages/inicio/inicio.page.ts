@@ -9,7 +9,7 @@ import { Componente } from '../../interfaces/interfaces';
 })
 export class InicioPage implements OnInit {
 
-  Componentes: Componente[] = [];
+  componentes: Componente[] = [];
 
   constructor(private router: Router) { }
 

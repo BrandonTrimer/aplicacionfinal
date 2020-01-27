@@ -1,5 +1,12 @@
-{
-    "icon": "american-football",
-    "name": "Pagina 1",
-    "redireccion": "/pagina1"
-}
+[
+    {
+        "icon": "home",
+        "name": "Inicio",
+        "redireccion": "/home"
+    },
+    {
+        "icon": "american-football",
+        "name": "Pagina 1",
+        "redireccion": "/pagina1"
+    }
+]
