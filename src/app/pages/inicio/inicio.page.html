@@ -11,7 +11,71 @@
 
 
 <ion-content>
-  <div class="ion-padding">
+  <!--<div class="ion-padding">
     <ion-button color="primary" expand="full" (click)="navegarPagina1()">Pagina 1</ion-button>
-  </div>
+  </div>-->
+
+
+  <ion-list>
+    
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" colum-auto>
+          <ion-card color="primary" href="https://www.ionicframework.com">
+            <ion-card-header>
+              <ion-card-title>Card Title</ion-card-title>
+            </ion-card-header>
+          
+            <ion-card-content>
+              Keep close to Nature's heart... and break clear 
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col size="6" colum-auto>
+          <ion-card color="tertiary" href="https://www.ionicframework.com">
+            <ion-card-header>
+              <ion-card-title>Card Title</ion-card-title>
+            </ion-card-header>
+          
+            <ion-card-content>
+              Keep close to Nature's heart... and break clear away, once in awhile,
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col size="6" colum-auto>
+          <ion-card color="secondary" href="https://www.ionicframework.com">
+            <ion-card-header>
+              <ion-card-title>Card Title</ion-card-title>
+            </ion-card-header>
+          
+            <ion-card-content>
+              Keep close to Nature's heart... and break clear away, once in awhile,
+              and climb a mountain or spend a week in the woods. Wash your spirit clean.
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col size="6" colum-auto>
+          <ion-card color="medium" href="https://www.ionicframework.com">
+            <ion-card-header>
+              <ion-card-title> </ion-card-title>
+            </ion-card-header>
+          
+            <ion-card-content>
+              Keep close to Nature's heart... and break clear away, once in awhile,
+              and climb a mountain or spend a week in the woods. Wash your spirit clean.
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button routerLink="/notas">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  
+
 </ion-content>

@@ -1,0 +1,49 @@
+<!--<ion-header>
+  <ion-toolbar>
+    <ion-title>notas</ion-title>
+  </ion-toolbar>
+</ion-header>-->
+<app-header titulo="Notas"></app-header>
+
+<ion-content>
+
+  <ion-item>
+    <ion-textarea placeholder="Titulo"></ion-textarea>
+  </ion-item>
+
+  <ion-item>
+    <ion-textarea placeholder="Nota" rows="10" cols="20"></ion-textarea>
+  </ion-item>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Hair Color</ion-label>
+      <ion-select value="brown" okText="Okay" cancelText="Dismiss">
+        <ion-select-option value="brown">Brown</ion-select-option>
+        <ion-select-option value="blonde">Blonde</ion-select-option>
+        <ion-select-option value="black">Black</ion-select-option>
+        <ion-select-option value="red">Red</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+
+
+</ion-content>
+
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-segment>
+      <ion-segment-button value="camera">
+        <ion-icon name="camera"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="bookmark">
+        <ion-icon name="bookmark"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="shirt">
+        <ion-icon name="shirt"></ion-icon>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-footer>
