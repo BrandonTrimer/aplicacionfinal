@@ -73,7 +73,7 @@ export class DatabaseService {
 
     addNota(titulo, contenido){
       let data = [titulo, contenido];
-      return this.database.executeSql('INSERT INTO nota (titulo, contenido) VALUES (?, ?, ?)',data).then(data =>{
+      return this.database.executeSql('INSERT INTO nota (titulo, contenido) VALUES (?, ?)',data).then(data =>{
         this.loadNotas();
       });
     }

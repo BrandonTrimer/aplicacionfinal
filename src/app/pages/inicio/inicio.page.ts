@@ -15,34 +15,20 @@ export class InicioPage implements OnInit {
 
   notas: NotaInt[] = [];
 
-  nota = {};
-  selectedView = 'note'; 
-
-  componentes: Componente[] = [];
-
   constructor(private db: DatabaseService, private router: Router) { }
 
   ngOnInit() {
     this.db.getDatabaseStated().subscribe(rdy => {
       if (rdy){
         this.db.getNotas().subscribe(note => {
-          console.log('iniciando la bd ', note)
+          console.log('iniciando la bd note', note)
           this.notas = note;
         })
       }
     });
   }
 
-  navegarPagina1(){
-    this.router.navigate(['/pagina1']);
-  }
-
-  addNotaP(){
-    this.db.addNota(this.nota['titulo'], this.nota['contenido'])
-    .then(_=> {
-      this.nota = {};
-    });
-  }
+  
 
   deleteNotaP(id){
     this.db.deleteNota(id)
@@ -51,9 +37,9 @@ export class InicioPage implements OnInit {
     });
   }
 
-  updateNotarP(id,titulo,contenido){
-    this.router.navigate(['notas', id,titulo,contenido]);
+  updateNotaP(id,titulo,contenido){
     console.log(id,titulo,contenido);
+    this.router.navigate(['notas', id,titulo,contenido]);
   }
 
 }

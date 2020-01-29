@@ -16,6 +16,10 @@ const routes: Routes = [
     path: 'notas',
     loadChildren: () => import('./pages/notas/notas.module').then( m => m.NotasPageModule)
   },
+  {
+    path: 'notas/:id/:titulo/:contenido',
+    loadChildren: () => import('./pages/notas/notas.module').then( m => m.NotasPageModule)
+  },
 ];
 
 @NgModule({
