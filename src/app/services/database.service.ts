@@ -50,12 +50,12 @@ export class DatabaseService {
       return this.dbReady.asObservable();
     }
 
-    getAutores(): Observable<NotaInt[]> {
+    getNotas(): Observable<NotaInt[]> {
       return this.notas .asObservable();
     }
 
     loadNotas(){
-      return this.database.executeSql('SELECT * FROM autor', []).then(data => {
+      return this.database.executeSql('SELECT * FROM nota', []).then(data => {
         let autores: NotaInt[] = [];
 
         if (data.rows.length > 0){
@@ -69,5 +69,37 @@ export class DatabaseService {
         }
         this.notas.next(autores);
       });
+    }
+
+    addNota(titulo, contenido){
+      let data = [titulo, contenido];
+      return this.database.executeSql('INSERT INTO nota (titulo, contenido) VALUES (?, ?, ?)',data).then(data =>{
+        this.loadNotas();
+      });
+    }
+
+    getNota(id): Promise<NotaInt>{
+      return this.database.executeSql('SELECT * FROM nota WHERE id = ?', [id]).then(data => {
+        return {
+          id: data.rows.item(0).id,
+          titulo: data.rows.item(0).titulo,
+          contenido: data.rows.item(0).contenido
+        }
+      });
+    }
+
+    deleteNota(id){
+      return this.database.executeSql('DELETE FROM nota WHERE id = ?',[id]).then(_ => {
+        this.loadNotas();
+      });
+    }
+
+    updateNota(id:number,titulo:string,contenido:string){
+      let data = [titulo,contenido,id];
+      console.log('database',data);
+      return this.database.executeSql('UPDATE nota SET titulo = ?, contenido = ? WHERE id = ?', [titulo,contenido,id]).then(_ =>{
+        this.loadNotas();
+        console.log('database2',titulo);
+      })
     }
 }
