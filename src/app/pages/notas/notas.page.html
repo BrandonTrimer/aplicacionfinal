@@ -5,23 +5,33 @@
 </ion-header>-->
 <app-header titulo="Notas"></app-header>
 
-<ion-content>
-
-  <ion-item color="primary">
+<ion-content *ngIf="notaId == null; else nota2">
+  <ion-item>
     <ion-textarea [(ngModel)]="nota.titulo" placeholder="Titulo"></ion-textarea>
   </ion-item>
 
-  <ion-item color="primary">
-    <ion-textarea [(ngModel)]="nota.contenido" placeholder="Nota" rows="30" cols="20"></ion-textarea>
+  <ion-item>
+    <ion-textarea [(ngModel)]="nota.contenido" placeholder="Nota" rows="10" cols="20"></ion-textarea>
+  </ion-item>
+</ion-content>
+
+<ng-template #nota2>
+  <ion-content>
+  <ion-item>
+    <ion-textarea [(ngModel)]="newTitulo" placeholder="{{notaTitulo}}"></ion-textarea>
   </ion-item>
 
+  <ion-item>
+    <ion-textarea [(ngModel)]="newContenido" placeholder="{{notaContenido}}" rows="10" cols="20"></ion-textarea>
+  </ion-item>
 </ion-content>
+</ng-template>
 
 
 <ion-footer>
   <ion-toolbar>
     <ion-segment>
-      <ion-segment-button value="camera" (click)="addNotaP()">
+      <ion-segment-button value="camera" (click)="guardarNotaP()">
         <ion-icon name="save"></ion-icon>
         <ion-label>Guardar</ion-label>
       </ion-segment-button>

@@ -14,6 +14,9 @@ export class NotasPage implements OnInit {
 
   nota = {};
 
+  newTitulo='';
+  newContenido='';
+
   notaId;
   notaTitulo;
   notaContenido;
@@ -35,24 +38,25 @@ export class NotasPage implements OnInit {
   }
 
   updateNotaP(){
-    this.db.updateNota(this.notaId, this.notaTitulo, this.notaContenido)
+    this.db.updateNota(this.notaId, this.newTitulo, this.newContenido)
     .then(_=> {
       this.router.navigate(['inicio']);
+      console.log('texto de la actualizacion',this.notaId,this.newContenido, this.newTitulo,'lol');
     });
   }
   guardarNotaP(){
-    if(this.notaId == ''){
+    if(this.notaId == null){
       this.db.addNota(this.nota['titulo'], this.nota['contenido'])
       .then(_=> {
         this.nota = {};
         this.router.navigate(['inicio']);
-        console.log('crear');
+        console.log('crear', this.notaId);
       });
     }else{
-      this.db.updateNota(this.notaId, this.notaTitulo, this.notaContenido)
+      this.db.updateNota(this.notaId, this.newTitulo, this.newContenido)
       .then(_=> {
         this.router.navigate(['inicio']);
-        console.log('editar');
+        console.log('texto de la actualizacion',this.notaId,this.newContenido, this.newTitulo,'lol');
       });
     }
   }
