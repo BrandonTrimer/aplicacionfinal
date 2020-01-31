@@ -60,4 +60,7 @@ export class NotasPage implements OnInit {
       });
     }
   }
+  cancelar(){
+    this.router.navigate(['inicio'])
+  }
 }

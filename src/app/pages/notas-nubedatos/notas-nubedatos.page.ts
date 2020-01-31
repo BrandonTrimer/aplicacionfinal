@@ -14,7 +14,8 @@ export class NotasNubedatosPage implements OnInit {
 
   nota: NotaInt = {
     titulo: '',
-    contenido: ''
+    contenido: '',
+    color:''
   };
 
   newTitulo='';
@@ -92,6 +93,10 @@ export class NotasNubedatosPage implements OnInit {
     }, err =>{
       this.showMensaje('Ups, algo salio mal');
     });
+  }
+
+  cancelar(){
+    this.router.navigate(['notas-nube'])
   }
 
 }

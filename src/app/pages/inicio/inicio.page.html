@@ -4,7 +4,7 @@
       <ion-menu-button color="primary" menu="primerMenu"></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      Inicio
+      Lista de Notas
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -13,29 +13,11 @@
 <ion-content>
 
   <ion-list>
-    
-    <!--<ion-grid>
-      <ion-row>
-
-        <ion-col size="6" colum-auto *ngFor="let n of notas">
-          <ion-card color="primary" (click)="updateNotaP(n.id, n.titulo, n.contenido)">
-            <ion-card-header>
-              <ion-card-title>{{n.titulo}}</ion-card-title>
-            </ion-card-header>
-
-            <ion-card-content>
-              {{n.contenido}} 
-            </ion-card-content>
-          </ion-card>
-        </ion-col>
-        
-      </ion-row>
-    </ion-grid>-->
 
     <ion-item-sliding size="6" colum-auto *ngFor="let n of notas">
       <ion-item>
         <ion-label color="{{n.color}}">
-          <ion-button fill="clear" shape="round" class="btn" size="large" (click)="opciones(n.id)">
+          <ion-button fill="clear" shape="round" class="btn" size="large" (click)="opciones(n.id,n.titulo,n.contenido,n.color)">
             <ion-icon name="more"></ion-icon>
           </ion-button>
           <h2>{{n.titulo}}</h2>
@@ -65,16 +47,24 @@
 <ion-footer *ngIf="op == true">
   <ion-toolbar>
     <ion-segment>
-      <ion-segment-button value="cloud-download" (click)="guardarNotaP()">
-        <ion-icon name="cloud-download"></ion-icon>
+      <ion-segment-button value="cloud-upload" (click)="subirNotaNube()">
+        <ion-icon name="cloud-upload"></ion-icon>
+        <ion-label>Subir</ion-label>
       </ion-segment-button>
 
       <ion-segment-button value="shirt" (click)="colorNota()">
         <ion-icon name="shirt"></ion-icon>
+        <ion-label>Colores</ion-label>
+      </ion-segment-button>
+
+      <ion-segment-button value="megaphone" (click)="testTTS()">
+        <ion-icon name="megaphone"></ion-icon>
+        <ion-label>Escuchar</ion-label>
       </ion-segment-button>
 
       <ion-segment-button value="close" (click)="cancelar()">
         <ion-icon name="close"></ion-icon>
+        <ion-label>Cancelar</ion-label>
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
@@ -98,7 +88,7 @@
             <ion-fab-button color="success" size="large" (click)="cambiarColorNota(notacid, color4)"></ion-fab-button>
           </ion-col>
           <ion-col>
-            <ion-fab-button color="danger" size="large" (click)="cambiarColorNota(notacid, color5)"></ion-fab-button>
+            <ion-fab-button color="dark" size="large" (click)="cambiarColorNota(notacid, color5)"></ion-fab-button>
           </ion-col>
         </ion-row>
       </ion-grid>

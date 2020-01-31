@@ -16,8 +16,19 @@ export class NotasNubePage implements OnInit {
 
   nota: NotaInt = {
     titulo: '',
-    contenido: ''
+    contenido: '',
+    color: ''
   };
+
+  notacid;
+  op: boolean = false;
+  op2: boolean = false;
+
+  color1 = "primary";
+  color2 = "secondary";
+  color3 = "tertiary";
+  color4 = "success";
+  color5 = "dark";
 
   private notas: Observable<NotaInt[]>;
   constructor(private dbfire: DatabaseFireService, private activatedRoute: ActivatedRoute, private router: Router,
@@ -49,6 +60,29 @@ export class NotasNubePage implements OnInit {
     }, err => {
       this.showMensaje('Ups! algo salio mal');
     });
+  }
+
+  opciones(id){
+    this.op = true;
+    this.op2 = false;
+    this.notacid = id;
+    console.log('op',this.op,id)
+  }
+  cancelar(){
+    this.op = false;
+  }
+  colorNota(){
+    this.op = false;
+    this.op2 = true;
+  }
+
+  actualizarColorNota(id, color){
+    this.dbfire.updateColorNotaFire(id, color).then(() =>{
+      
+    }, err =>{
+      
+    });
+    this.op2 = false;
   }
 
   

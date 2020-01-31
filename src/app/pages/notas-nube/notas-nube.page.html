@@ -3,18 +3,18 @@
     <ion-title>notasNube</ion-title>
   </ion-toolbar>
 </ion-header>-->
-<app-header titulo="Notas Online"></app-header>
+<app-header titulo="Lista de Notas Online"></app-header>
 
 <ion-content>
   <ion-list>
     <ion-item-sliding size="6" colum-auto *ngFor="let n of (notas | async)">
       <ion-item>
-        <ion-label color="secondary">
+        <ion-label color="{{n.color}}">
+          <ion-button fill="clear" shape="round" class="btn" size="large" (click)="opciones(n.id)">
+            <ion-icon name="more"></ion-icon>
+          </ion-button>
           <h2>{{n.titulo}}</h2>
           <p>{{n.contenido}} </p>
-          <ion-button>
-            <ion-icon slot="start" name="star"></ion-icon>
-          </ion-button>
         </ion-label>
       </ion-item>
       <ion-item-options side="end">
@@ -36,3 +36,45 @@
     </ion-fab-button>
   </ion-fab>
 </ion-content>
+
+<ion-footer *ngIf="op == true">
+  <ion-toolbar>
+    <ion-segment>
+      <ion-segment-button value="shirt" (click)="colorNota()">
+        <ion-icon name="shirt"></ion-icon>
+        <ion-label>Colores</ion-label>
+      </ion-segment-button>
+
+      <ion-segment-button value="close" (click)="cancelar()">
+        <ion-icon name="close"></ion-icon>
+        <ion-label>Cancelar</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-footer>
+
+<ion-footer *ngIf="op2 == true">
+  <ion-toolbar>
+    <ion-segment>
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col>
+            <ion-fab-button color="primary" size="large" (click)="actualizarColorNota(notacid, color1)"></ion-fab-button>
+          </ion-col>
+          <ion-col>
+            <ion-fab-button color="secondary" size="large" (click)="actualizarColorNota(notacid, color2)"></ion-fab-button>
+          </ion-col>
+          <ion-col>
+            <ion-fab-button color="tertiary" size="large" (click)="actualizarColorNota(notacid, color3)"></ion-fab-button>
+          </ion-col>
+          <ion-col>
+            <ion-fab-button color="success" size="large" (click)="actualizarColorNota(notacid, color4)"></ion-fab-button>
+          </ion-col>
+          <ion-col>
+            <ion-fab-button color="dark" size="large" (click)="actualizarColorNota(notacid, color5)"></ion-fab-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-segment>
+  </ion-toolbar>
+</ion-footer>

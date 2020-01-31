@@ -3,7 +3,7 @@
     <ion-title>notas</ion-title>
   </ion-toolbar>
 </ion-header>-->
-<app-header titulo="Notas"></app-header>
+<app-header titulo="Nota"></app-header>
 
 <ion-content *ngIf="notaId == null; else nota2">
   <ion-item>
@@ -36,13 +36,9 @@
         <ion-label>Guardar</ion-label>
       </ion-segment-button>
 
-      <ion-segment-button value="bookmark">
-        <ion-icon name="bookmark"></ion-icon>
-      </ion-segment-button>
-
-      <ion-segment-button value="shirt">
-        <ion-icon name="shirt"></ion-icon>
-        <ion-label>Colores</ion-label>
+      <ion-segment-button value="close" (click)="cancelar()">
+        <ion-icon name="close"></ion-icon>
+        <ion-label>Cancelar</ion-label>
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>

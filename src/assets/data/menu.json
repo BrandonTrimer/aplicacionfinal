@@ -8,10 +8,5 @@
         "icon": "cloud",
         "name": "Notas Online",
         "redireccion": "/notas-nube"
-    },
-    {
-        "icon": "american-football",
-        "name": "Pagina Home",
-        "redireccion": "/home"
     }
 ]

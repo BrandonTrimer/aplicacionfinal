@@ -47,10 +47,17 @@ export class DatabaseFireService {
   addNota(nota: NotaInt): Promise<DocumentReference>{
     return this.notasColeccion.add(nota);
   }
+  subirNota(nota: NotaInt): Promise<DocumentReference>{
+    return this.notasColeccion.add(nota);
+  }
 
   updateNotaFire(id,titulo,contenido): Promise<void>{
     console.log('updatenotafire',id,titulo,contenido)
     return this.notasColeccion.doc(id).update({ titulo: titulo, contenido: contenido,});
+  }
+  updateColorNotaFire(id,color): Promise<void>{
+    console.log('updatenotafire',id,color)
+    return this.notasColeccion.doc(id).update({color: color});
   }
 
   deleteNotaFiren(id: string): Promise<void>{

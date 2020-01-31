@@ -6,6 +6,10 @@ import { Observable} from 'rxjs';
 import { NotaInt } from 'src/app/services/database.service';
 import { DatabaseService } from './../../services/database.service';
 
+import { DatabaseFireService } from 'src/app/services/database-fire.service';
+
+import { TextToSpeech } from '@ionic-native/text-to-speech/ngx';
+
 
 @Component({
   selector: 'app-inicio',
@@ -14,9 +18,23 @@ import { DatabaseService } from './../../services/database.service';
 })
 export class InicioPage implements OnInit {
 
+ 
+
   notas: NotaInt[] = [];
 
+  notasF: NotaInt;
+
   notacid;
+  notaTitulo;
+  notaContenido;
+  notaColor;
+
+  notaFire: NotaInt = {
+    titulo: '',
+    contenido: '',
+    color: ''
+  };
+
   op: boolean = false;
   op2: boolean = false;
 
@@ -24,10 +42,13 @@ export class InicioPage implements OnInit {
   color2 = "secondary";
   color3 = "tertiary";
   color4 = "success";
-  color5 = "danger";
+  color5 = "dark";
   
+  ttsText: "";
+  local: 'en-US';
 
-  constructor(private db: DatabaseService, private router: Router) { }
+  constructor(private dbfire: DatabaseFireService, private db: DatabaseService, private router: Router,
+    private tts: TextToSpeech) { }
 
   ngOnInit() {
     this.db.getDatabaseStated().subscribe(rdy => {
@@ -54,20 +75,30 @@ export class InicioPage implements OnInit {
     this.router.navigate(['notas', id,titulo,contenido]);
   }
 
-  opciones(id){
+  opciones(id,titulo,contenido,color){
     this.op = true;
     this.op2 = false;
     this.notacid = id;
-    console.log('op',this.op,id)
+    this.notaTitulo = titulo;
+    this.notaContenido = contenido;
+    this.notaColor = color;
+
+    this.ttsText = contenido;
+
+
+    this.notaFire = {
+      titulo: this.notaTitulo,
+      contenido: this.notaContenido,
+      color: this.notaColor
+    };
+    
+    console.log('op',this.op,id, this.notaTitulo,this.notaColor);
+    console.log('notafire',this.notaFire);
+    console.log('notafire no',this.notas);
   }
   cancelar(){
     this.op = false;
     console.log('op',this.op)
-  }
-  cerrar(){
-    this.op = false;
-    this.op2 = false;
-    console.log('carrar')
   }
 
   colorNota(){
@@ -82,4 +113,19 @@ export class InicioPage implements OnInit {
       });
       this.op2 = false;
     }
+
+  subirNotaNube(){
+    this.dbfire.subirNota(this.notaFire).then(() =>{
+      this.router.navigateByUrl('/notas-nube');
+      console.log('notafire',this.notaFire)
+    }, err =>{
+      console.log('error notafire',this.notaFire)
+    });
+  }
+  testTTS(){
+    this.tts.speak({
+      text: this.ttsText,
+      locale: this.local
+    });
+  }
 }
