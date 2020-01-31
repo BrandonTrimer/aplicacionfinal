@@ -10,7 +10,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export interface NotaInt{
   id?: string,
   titulo: string,
-  contenido: string
+  contenido: string,
+  color?: string
 }
 
 @Injectable({
@@ -59,18 +60,19 @@ export class DatabaseService {
 
     loadNotas(){
       return this.database.executeSql('SELECT * FROM nota', []).then(data => {
-        let autores: NotaInt[] = [];
+        let notas: NotaInt[] = [];
 
         if (data.rows.length > 0){
           for (var i = 0; i < data.rows.length; i++){
-            autores.push({
+            notas.push({
               id: data.rows.item(i).id,
               titulo: data.rows.item(i).titulo,
               contenido: data.rows.item(i).contenido,
+              color: data.rows.item(i).color,
             });
           }
         }
-        this.notas.next(autores);
+        this.notas.next(notas);
       });
     }
 
@@ -104,6 +106,15 @@ export class DatabaseService {
       return this.database.executeSql('UPDATE nota SET titulo = ?, contenido = ? WHERE id = ?', [titulo,contenido,id]).then(_ =>{
         this.loadNotas();
         console.log('database2',titulo);
+      })
+    }
+
+    updateColorNota(id, color){
+      let data = [color,id];
+      console.log('database',data);
+      return this.database.executeSql('UPDATE nota SET color = ? WHERE id = ?', [color,id]).then(_ =>{
+        this.loadNotas();
+        console.log('database2',color);
       })
     }
 }

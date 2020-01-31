@@ -34,8 +34,8 @@
 
     <ion-item-sliding size="6" colum-auto *ngFor="let n of notas">
       <ion-item>
-        <ion-label color="secondary">
-          <ion-button fill="clear" shape="round" class="btn">
+        <ion-label color="{{n.color}}">
+          <ion-button fill="clear" shape="round" class="btn" size="large" (click)="opciones(n.id)">
             <ion-icon name="more"></ion-icon>
           </ion-button>
           <h2>{{n.titulo}}</h2>
@@ -60,7 +60,48 @@
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-
-  
-
 </ion-content>
+
+<ion-footer *ngIf="op == true">
+  <ion-toolbar>
+    <ion-segment>
+      <ion-segment-button value="cloud-download" (click)="guardarNotaP()">
+        <ion-icon name="cloud-download"></ion-icon>
+      </ion-segment-button>
+
+      <ion-segment-button value="shirt" (click)="colorNota()">
+        <ion-icon name="shirt"></ion-icon>
+      </ion-segment-button>
+
+      <ion-segment-button value="close" (click)="cancelar()">
+        <ion-icon name="close"></ion-icon>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-footer>
+
+<ion-footer *ngIf="op2 == true">
+  <ion-toolbar>
+    <ion-segment>
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col>
+            <ion-fab-button color="primary" size="large" (click)="cambiarColorNota(notacid, color1)"></ion-fab-button>
+          </ion-col>
+          <ion-col>
+            <ion-fab-button color="secondary" size="large" (click)="cambiarColorNota(notacid, color2)"></ion-fab-button>
+          </ion-col>
+          <ion-col>
+            <ion-fab-button color="tertiary" size="large" (click)="cambiarColorNota(notacid, color3)"></ion-fab-button>
+          </ion-col>
+          <ion-col>
+            <ion-fab-button color="success" size="large" (click)="cambiarColorNota(notacid, color4)"></ion-fab-button>
+          </ion-col>
+          <ion-col>
+            <ion-fab-button color="danger" size="large" (click)="cambiarColorNota(notacid, color5)"></ion-fab-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-segment>
+  </ion-toolbar>
+</ion-footer>
