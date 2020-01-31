@@ -5,9 +5,9 @@
         "redireccion": "/inicio"
     },
     {
-        "icon": "american-football",
-        "name": "Pagina 1",
-        "redireccion": "/pagina1"
+        "icon": "cloud",
+        "name": "Notas Online",
+        "redireccion": "/notas-nube"
     },
     {
         "icon": "american-football",

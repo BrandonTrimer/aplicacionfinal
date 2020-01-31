@@ -20,6 +20,18 @@ const routes: Routes = [
     path: 'notas/:id/:titulo/:contenido',
     loadChildren: () => import('./pages/notas/notas.module').then( m => m.NotasPageModule)
   },
+  {
+    path: 'notas-nube',
+    loadChildren: () => import('./pages/notas-nube/notas-nube.module').then( m => m.NotasNubePageModule)
+  },
+  {
+    path: 'notas-nubedatos',
+    loadChildren: () => import('./pages/notas-nubedatos/notas-nubedatos.module').then( m => m.NotasNubedatosPageModule)
+  },
+  {
+    path: 'notas-nubedatos/:id/:titulo/:contenido',
+    loadChildren: () => import('./pages/notas-nubedatos/notas-nubedatos.module').then( m => m.NotasNubedatosPageModule)
+  },
 ];
 
 @NgModule({

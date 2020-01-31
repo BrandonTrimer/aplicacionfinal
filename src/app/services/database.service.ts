@@ -5,8 +5,10 @@ import { HttpClient } from '@angular/common/http';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
 import { BehaviorSubject, Observable } from 'rxjs';
 
+
+
 export interface NotaInt{
-  id: number,
+  id?: string,
   titulo: string,
   contenido: string
 }
@@ -15,6 +17,7 @@ export interface NotaInt{
   providedIn: 'root'
 })
 export class DatabaseService {
+
   private database: SQLiteObject;
   private dbReady: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
@@ -91,6 +94,7 @@ export class DatabaseService {
     deleteNota(id){
       return this.database.executeSql('DELETE FROM nota WHERE id = ?',[id]).then(_ => {
         this.loadNotas();
+        console.log('id de eliminar',id)
       });
     }
 

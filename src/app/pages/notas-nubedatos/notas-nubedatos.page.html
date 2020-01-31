@@ -1,0 +1,49 @@
+<!--<ion-header>
+  <ion-toolbar>
+    <ion-title>notasNubedatos</ion-title>
+  </ion-toolbar>
+</ion-header>-->
+<app-header titulo="Notas Online"></app-header>
+
+<ion-content *ngIf="nota.id == null; else nota2">
+  <ion-item>
+    <ion-textarea [(ngModel)]="nota.titulo" placeholder="Titulo"></ion-textarea>
+  </ion-item>
+
+  <ion-item>
+    <ion-textarea [(ngModel)]="nota.contenido" placeholder="Nota" rows="10" cols="20"></ion-textarea>
+  </ion-item>
+</ion-content>
+
+<ng-template #nota2>
+  <ion-content>
+  <ion-item>
+    <ion-textarea [(ngModel)]="newTitulo" placeholder="{{notaTitulo}}"></ion-textarea>
+  </ion-item>
+
+  <ion-item>
+    <ion-textarea [(ngModel)]="newContenido" placeholder="{{notaContenido}}" rows="10" cols="20"></ion-textarea>
+  </ion-item>
+</ion-content>
+</ng-template>
+
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-segment>
+      <ion-segment-button value="camera" (click)="guardarNotaNube()">
+        <ion-icon name="save"></ion-icon>
+        <ion-label>Guardar</ion-label>
+      </ion-segment-button>
+
+      <ion-segment-button value="bookmark">
+        <ion-icon name="bookmark"></ion-icon>
+      </ion-segment-button>
+
+      <ion-segment-button value="shirt">
+        <ion-icon name="shirt"></ion-icon>
+        <ion-label>Colores</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-footer>
