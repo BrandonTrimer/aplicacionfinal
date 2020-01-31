@@ -7,6 +7,7 @@ import { NotaInt } from 'src/app/services/database.service';
 import { DatabaseService } from './../../services/database.service';
 
 import { DatabaseFireService } from 'src/app/services/database-fire.service';
+import { ToastController } from '@ionic/angular';
 
 import { TextToSpeech } from '@ionic-native/text-to-speech/ngx';
 
@@ -48,7 +49,7 @@ export class InicioPage implements OnInit {
   local: 'en-US';
 
   constructor(private dbfire: DatabaseFireService, private db: DatabaseService, private router: Router,
-    private tts: TextToSpeech) { }
+    private toastCtrl: ToastController, private tts: TextToSpeech) { }
 
   ngOnInit() {
     this.db.getDatabaseStated().subscribe(rdy => {
@@ -61,11 +62,17 @@ export class InicioPage implements OnInit {
     });
   }
 
-  
+  showMensaje(msg){
+    this.toastCtrl.create({
+      message: msg,
+      duration: 2000
+    }).then(toast => toast.present());
+  }
 
   deleteNotaP(id){
     this.db.deleteNota(id)
     .then(_=> {
+      this.showMensaje('Nota eliminada');
       console.log('lol nota delete',id)
     });
   }
